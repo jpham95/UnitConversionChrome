@@ -1,4 +1,4 @@
-# UnitConversionChrome
+# Unit Conversion Extension for Chrome
  
 Converts highlighted units to their imperial/metric opposite and displays in a tooltip.
 
