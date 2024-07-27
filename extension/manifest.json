@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Unit Conversion Extension",
+    "version": "1.0",
+    "description": "Converts highlighted units to their imperial/metric opposite and displays in a tooltip.",
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "contextMenus",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ]
+}
