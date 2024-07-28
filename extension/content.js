@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         tooltip.style.top = `${event.pageY + 10}px`;
     }
     if (request.action === "showResult") {
-        tooltip.textContent = `Converted: ${request.message}`;
+        tooltip.textContent = request.message;
         tooltip.style.position = 'absolute';
         tooltip.style.backgroundColor = 'black';
         tooltip.style.color = 'white';
