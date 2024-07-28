@@ -2,10 +2,10 @@
  
 Converts highlighted units to their imperial/metric opposite and displays in a tooltip.
 Currently supports:
-  > °C <-> °F
-  > kilometers <-> miles
-  > kilograms <-> pounds
-  > centimeters <-> inches
+  - °C <-> °F
+  - kilometers <-> miles
+  - kilograms <-> pounds
+  - centimeters <-> inches
 
 ![tooltip](https://github.com/user-attachments/assets/c47bd551-ac5c-4090-9d77-e6ed47f9639c)
 
