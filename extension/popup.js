@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
   // tooltip timeout timer slider
-  function updateTooltipTimeout(value) {
+  async function updateTooltipTimeout(value) {
     tooltipTimeoutSlider.value = value;
     tooltipTimeoutInput.value = value;
     chrome.storage.local.set({tooltipTimeout: value});
@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // initialise button text and tooltip timeout
-  chrome.storage.local.get(['enabled', 'tooltipTimeout'], (data) => {
-    const timeout = data.tooltipTimeout || 3;
-    updateTooltipTimeout(timeout);
-  });
+  const timeout = await chrome.storage.local.get('tooltipTimeout').tooltipTimeout 
+                        || 3;
+  updateTooltipTimeout(timeout);
 });

@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 
 // Handle context menu click
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     if (info.menuItemId === "convertUnit") {
         const selectedText = info.selectionText;
         const unitMatch = selectedText.match(/([\d,]+(\.\d+)?)\s*(miles?|mi|km|kilometers?|C|F|kg|kilograms?|lbs?|pounds|"|inches|cm|centimeter|inch|centimeters?)/i);
@@ -68,7 +68,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             }
 
             if (result) {
-                chrome.tabs.sendMessage(tab.id, {action: "showResult", message: message})
+                await chrome.tabs.sendMessage(tab.id, {action: "showResult", message: message})
             }
         }
     }

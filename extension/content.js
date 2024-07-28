@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     const tooltip = document.createElement('div');
 
     function moveTooltip(event) {
@@ -18,12 +18,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         document.addEventListener('mousemove', moveTooltip);
 
-        chrome.storage.local.get('tooltipTimeout', (data) => {
-            const timeout = (data.tooltipTimeout || 3) * 1000; // sec -> ms conversion
-            setTimeout(() => {
+        data = await chrome.storage.local.get('tooltipTimeout');
+        const timeout = (data.tooltipTimeout || 3) * 1000; // sec -> ms conversion
+        setTimeout(() => {
                 document.body.removeChild(tooltip);
                 document.removeEventListener('mousemove', moveTooltip);
-            }, timeout);
-        })
+        }, timeout);
     }
 });
