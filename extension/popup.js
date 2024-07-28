@@ -17,6 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // initialise button text and tooltip timeout
   const timeout = await chrome.storage.local.get('tooltipTimeout').tooltipTimeout 
-                        || 3;
+                        || 3; // default 3
   updateTooltipTimeout(timeout);
 });
