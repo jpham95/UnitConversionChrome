@@ -7,7 +7,7 @@ Currently supports:
   > kilograms <-> pounds
   > centimeters <-> inches
 
-![tooltip](https://github.com/user-attachments/assets/a9aaa039-24ef-447f-a5b4-5bc9b00c81b4)
+![tooltip](https://github.com/user-attachments/assets/c47bd551-ac5c-4090-9d77-e6ed47f9639c)
 
 Adjust tooltip display time by clicking on the extension button in the chrome extensions dropdown menu.
 
