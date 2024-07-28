@@ -1,6 +1,11 @@
 # Unit Conversion Extension for Chrome
  
 Converts highlighted units to their imperial/metric opposite and displays in a tooltip.
+Currently supports:
+  > °C <-> °F
+  > kilometers <-> miles
+  > kilograms <-> pounds
+  > centimeters <-> inches
 
 ![tooltip](https://github.com/user-attachments/assets/a9aaa039-24ef-447f-a5b4-5bc9b00c81b4)
 
