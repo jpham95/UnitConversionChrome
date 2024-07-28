@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     if (info.menuItemId === "convertUnit") {
         const selectedText = info.selectionText;
-        const unitMatch = selectedText.match(/([\d,]+(\.\d+)?)\s*(miles?|mi|km|kilometers?|C|F|kg|kilograms?|lbs?|pounds|"|inches|cm|centimeter|inch|centimeters?)/i);
+        const unitMatch = selectedText.match(/([\d,]+(\.\d+)?)\s*(miles?|mi|km|kilometers?|°?C|°?F|kg|kilograms?|lbs?|pounds|"|inches|cm|centimeter|inch|centimeters?)/i);
         if (unitMatch) {
             const value = parseFloat(unitMatch[1].replace(/,/g, ''));
             const unit = unitMatch[3].toLowerCase();
@@ -22,34 +22,41 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
             switch(unit) {
                 case 'c':
+                case '°c':
                     result = ((value * 9/5) + 32).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `\u00B0C`, `\u00B0F`;
+                    origin = `\u00B0C`; 
+                    dest = `\u00B0F`;
                     // message = `${value.toLocaleString()}\u00B0C = ${result}\u00B0F`;
                     break;
                 case 'f':
+                case '°f':
                     result = ((value - 32) * 5/9).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `\u00B0F`, `\u00B0C`;
+                    origin = `\u00B0F`;
+                    dest = `\u00B0C`;
                     // message = `${value.toLocaleString()}\u00B0F = ${result}\u00B0C`;
                     break;
                 case 'km':
                 case 'kilometer':
                 case 'kilometers':
                     result = (value * 0.621371).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `km`, `mi`;
+                    origin = `km`;
+                    dest = `mi`;
                     // message = `${value.toLocaleString()}km = ${result}mi`;
                     break;
                 case 'mi':
                 case 'mile':
                 case 'miles':
                     result = (value * 1.60934).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `mi`, `km`
+                    origin = `mi`;
+                    dest = `km`
                     // message = `${value.toLocaleString()}mi = ${result}km`;
                     break;
                 case 'kg':
                 case 'kilogram':
                 case 'kilograms':
                     result = (value * 2.20462).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `kg`, `lb`
+                    origin = `kg`
+                    dest = `lb`
                     // message = `${value.toLocaleString()}kg = ${result}lb`;
                     break;
                 case 'lb':
@@ -57,27 +64,30 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
                 case 'pound':
                 case 'pounds':
                     result = (value * 0.453592).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `lb`, `kg`
+                    origin = `lb`;
+                    dest = `kg`;
                     // message = `${value.toLocaleString()}lb = ${result}kg`;
                     break;
                 case '"':
                 case 'inches':
                 case 'inch':
                     result = (value * 2.54).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `"`, `cm`
+                    origin = `"`; 
+                    dest = `cm`;
                     // message = `${value.toLocaleString()}in = ${result}cm`;
                     break;
                 case 'cm':
                 case 'centimeter':
                 case 'centimeters':
                     result = (value * 0.393701).toLocaleString(undefined, {maximumFractionDigits: 2});
-                    origin, dest = `cm`, `"`
+                    origin = `cm`;
+                    dest = `"`;
                     // message = `${value.toLocaleString()}cm = ${result}in`;
                     break;
             }
 
             if (result) {
-                message = `${value.toLocaleString(undefined, {maximumFractionDigits: 2})}${origin} = ${result}${dest}`
+                message = `${value.toLocaleString()}${origin} = ${result}${dest}`
                 await chrome.tabs.sendMessage(tab.id, {action: "showResult", message: message})
             }
         }
