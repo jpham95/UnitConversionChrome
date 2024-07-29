@@ -1,13 +1,22 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const tooltipFormat = document.querySelector('input[name="tooltipFormat"]:checked')
+  const tooltipFormatSelect = document.getElementById('tooltipFormat');
+  const tooltipTimeoutSlider = document.getElementById('tooltipTimeoutSlider');
+  const tooltipTimeoutInput = document.getElementById('tooltipTimeoutInput');
+
   // tooltip format selector
   async function updateTooltipFormat(value) {
-    const selectedFormat = document.querySelector(`input[name="tooltipFormat"][value="${value}"]`);
-    if (selectedFormat) {
-      selectedFormat.checked = true;
-    }
+    tooltipFormatSelect.value = value;
     await chrome.storage.local.set({tooltipFormat: value});    
   }
+  
+  // initialise tooltip format selector
+  const format = (await chrome.storage.local.get('tooltipFormat')).tooltipFormat
+                  || '='; // default '=' symbol
+  updateTooltipFormat(format);
+  tooltipFormat.addEventListener('change', (event) => {
+    updateTooltipFormat(event.target.value);
+  });
+
   // tooltip timeout timer slider
   async function updateTooltipTimeout(value) {
     tooltipTimeoutSlider.value = value;
@@ -19,15 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const timeout = (await chrome.storage.local.get('tooltipTimeout')).tooltipTimeout 
                   || 3; // default 3
   updateTooltipTimeout(timeout);
-  // initialise tooltip format selector
-  const format = (await chrome.storage.local.get('tooltipFormat')).tooltipFormat
-                  || '=';
-  updateTooltipFormat(format);
-
-  // TODO: tooltipFormat is null here for some reason
-  tooltipFormat.addEventListener('input', (event) => {
-    updateTooltipFormat(event.target.value);
-  });
 
   tooltipTimeoutSlider.addEventListener('input', (event) => {
     updateTooltipTimeout(event.target.value);
