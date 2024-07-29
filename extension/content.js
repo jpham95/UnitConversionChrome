@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
         document.addEventListener('mousemove', moveTooltip);
 
-        data = await chrome.storage.local.get('tooltipTimeout');
+        const data = await chrome.storage.local.get('tooltipTimeout');
         const timeout = (data.tooltipTimeout || 3) * 1000; // sec -> ms conversion
         setTimeout(() => {
                 document.body.removeChild(tooltip);

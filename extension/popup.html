@@ -12,6 +12,12 @@
   <label for="tooltipTimeout">Tooltip Timeout (seconds):</label>
   <input type="number" id="tooltipTimeoutInput" min="1" max="10" value="3">
   <input type="range" id="tooltipTimeoutSlider" min="1" max="10" value="3">
+  <br>
+  <label for="tooltipFormat">Tooltip Format: </label><br>
+  <input type="radio" id="symbol" name="tooltipFormat" value="=">
+  <label for="symbol">"1mi = 1.61km"</label><br>
+  <input type="radio" id="words" name="tooltipFormat" value="to">
+  <label for="words">"1mi converts to 1.61km"</label>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -87,7 +87,14 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
             }
 
             if (result) {
-                message = `${value.toLocaleString()}${origin} = ${result}${dest}`
+                const data = {
+                    from: `${value.toLocaleString()}${origin}`,
+                    to: `${result}${dest}`
+                }
+                const format = await chrome.storage.local.get('tooltipFormat');
+                const message = format === '=' ? 
+                                `${data.from} = ${data.to}`
+                                : `${data.from} converts to ${data.to}`
                 await chrome.tabs.sendMessage(tab.id, {action: "showResult", message: message})
             }
         }
