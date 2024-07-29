@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const { tooltipFormat } = await chrome.storage.local.get('tooltipFormat');
   const format = tooltipFormat || '='; // default '=' symbol
   updateTooltipFormat(format);
-  tooltipFormat.addEventListener('change', (event) => {
+  tooltipFormatSelect.addEventListener('change', (event) => {
     updateTooltipFormat(event.target.value);
   });
 
