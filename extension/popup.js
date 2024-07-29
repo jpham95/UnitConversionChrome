@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   
   // initialise tooltip format selector
-  const format = (await chrome.storage.local.get('tooltipFormat')).tooltipFormat
-                  || '='; // default '=' symbol
+  const { tooltipFormat } = await chrome.storage.local.get('tooltipFormat');
+  const format = tooltipFormat || '='; // default '=' symbol
   updateTooltipFormat(format);
   tooltipFormat.addEventListener('change', (event) => {
     updateTooltipFormat(event.target.value);
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
   
   // initialise tooltip timeout
-  const timeout = (await chrome.storage.local.get('tooltipTimeout')).tooltipTimeout 
-                  || 3; // default 3
+  const { tooltipTimeout } = await chrome.storage.local.get('tooltipTimeout');
+  const timeout = tooltipTimeout || 3; // default 3
   updateTooltipTimeout(timeout);
 
   tooltipTimeoutSlider.addEventListener('input', (event) => {

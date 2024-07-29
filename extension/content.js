@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         tooltip.style.left = `${event.pageX + 10}px`;
         tooltip.style.top = `${event.pageY + 10}px`;
     }
-    if (request.action === "showResult") {
+    if (request.action === 'showResult') {
         tooltip.textContent = request.message;
         tooltip.style.position = 'absolute';
         tooltip.style.backgroundColor = 'black';
@@ -18,11 +18,11 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
         document.addEventListener('mousemove', moveTooltip);
 
-        const data = await chrome.storage.local.get('tooltipTimeout');
-        const timeout = (data.tooltipTimeout || 3) * 1000; // sec -> ms conversion
+        const { tooltipTimeout } = await chrome.storage.local.get('tooltipTimeout');
+        const timeout = (tooltipTimeout || 3) * 1000; // sec -> ms conversion
         setTimeout(() => {
-                document.body.removeChild(tooltip);
-                document.removeEventListener('mousemove', moveTooltip);
+            document.body.removeChild(tooltip);
+            document.removeEventListener('mousemove', moveTooltip);
         }, timeout);
     }
 });
