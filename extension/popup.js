@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // tooltip format selector
   async function updateTooltipFormat(value) {
     tooltipFormatSelect.value = value;
-    await chrome.storage.local.set({tooltipFormat: value});    
+    await chrome.storage.local.set({tooltipFormat: value});   
   }
   
   // initialise tooltip format selector
