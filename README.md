@@ -6,9 +6,11 @@ Currently supports:
   - kilometers <-> miles
   - kilograms <-> pounds
   - centimeters <-> inches
+  - grams <-> ounces
 
-![tooltip](https://github.com/user-attachments/assets/c47bd551-ac5c-4090-9d77-e6ed47f9639c)
+![contextMenu](https://github.com/user-attachments/assets/059d6b2c-5701-4597-a55d-253c8ee34c14)
+![tooltip=](https://github.com/user-attachments/assets/b00d87ab-a8d9-450f-92aa-75b663477032)
 
-Adjust tooltip display time by clicking on the extension button in the chrome extensions dropdown menu.
+Adjust tooltip display time and format by clicking on the extension button in the chrome extensions dropdown menu.
 
-![popup](https://github.com/user-attachments/assets/cb23d977-a157-4fcd-899b-998551983949)
+![popupChrome](https://github.com/user-attachments/assets/f03ad112-9131-4710-a8fb-db1e64280139)
