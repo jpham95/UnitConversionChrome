@@ -1,5 +1,7 @@
 # Unit Conversion Extension for Chrome
- 
+
+[Store Link](https://chromewebstore.google.com/detail/unit-conversion-extension/kaihjppejigmahdjgkboajjnghhkmdii)
+
 Converts highlighted units to their imperial/metric opposite and displays in a tooltip.
 Currently supports:
   - °C <-> °F
